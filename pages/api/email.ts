@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { MailUtils } from '../utils/MailUtils';
+import { MailUtils } from './utils/MailUtils';
 
 type Data = {
     name: string
