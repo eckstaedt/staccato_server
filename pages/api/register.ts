@@ -10,7 +10,7 @@ export default async function handler(req: any, res: any) {
         email, password
     });
 
-    const opt = {
+    const mailOptions: any = {
         from: process.env.EMAIL,
         to: req.body.email,
         subject: "Dein Account in der Dirigentenschul-App",
@@ -73,21 +73,26 @@ export default async function handler(req: any, res: any) {
         </html>`,
     };
 
-    (await MailUtils.createTransporter()).sendMail(opt, function (err: any, info: any) {
-        if (err) {
-            console.log(err);
-            res.status(200).end(JSON.stringify({
-                response: `Die E-Mail an "TEST" konnte nicht versendet werden`,
-            }));
-        } else {
-            console.log(info);
-            res.status(200).end(JSON.stringify({
-                response: `Die E-Mail an "TEST" wurde erfolgreich versandt`,
-            }));
-        }
-    });
+    const mailSent: boolean = await sendMail(mailOptions);
 
-    res.status(200).end(JSON.stringify({ user: data.user }));
+    res.status(200).end(JSON.stringify({ user: data.user, mailSent }));
+}
+
+const sendMail = (mailOptions: any): Promise<boolean> => {
+    return new Promise(async (resolve) => {
+        const transporter = await MailUtils.createTransporter()
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log("error is " + error);
+                resolve(false);
+            }
+            else {
+                console.log('Email sent: ' + info.response);
+                resolve(true);
+            }
+        });
+    });
 }
 
 const createPassword = () => {
