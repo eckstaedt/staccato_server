@@ -3,17 +3,21 @@ import { MailUtils } from './utils/MailUtils';
 
 export default async function handler(req: any, res: any) {
     const supabase: SupabaseClient = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL as string, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string);
-    const { email, isProd } = req.body;
+    const { email, name, isProd } = req.body;
     const password: string = createPassword();
 
     const { data, error } = await supabase.auth.signUp({
         email, password
     });
 
+    if (error) {
+        res.status(500).end(JSON.stringify({ error }));
+    }
+
     const mailOptions: any = {
         from: process.env.EMAIL,
         to: req.body.email,
-        subject: "Dein Account in der Dirigentenschul-App",
+        subject: "Deine Zugangsdaten für die Dirigentenschul-App",
         html: `
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml">
@@ -40,12 +44,12 @@ export default async function handler(req: any, res: any) {
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                         <tr>
                                             <td style="color: #153643; font-family: Arial, sans-serif; font-size: 20px;">
-                                                <b>Shalom ${email},</b>
+                                                <b>Shalom ${name},</b>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="white-space: pre-line; padding: 10px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                                                Anbei dein Passwort für die Dirigentenschul-App:<br/>Passwort: ${password}<br/><br/>Mit Gottes Segen,<br>Die Dirigentenschulleitung
+                                                Anbei deine Zugangsdaten für die Dirigentenschul-App:<br/>E-Mail: ${email}<br/>Passwort: ${password}<br/><br/><a href="https://app.dirigentenschule.de">Zur App</a><br/><br/>Mit Gottes Segen,<br>Die Dirigentenschulleitung
                                             </td>
                                         </tr>
                                     </table>
