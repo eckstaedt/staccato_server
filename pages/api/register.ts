@@ -2,9 +2,15 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { MailUtils } from './utils/MailUtils';
 
 export default async function handler(req: any, res: any) {
-    const supabase: SupabaseClient = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL as string, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string);
     const { email, name, isProd } = req.body;
     const password: string = createPassword();
+    let supabase: SupabaseClient;
+
+    if (isProd) {
+        supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL_PROD as string, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_PROD as string);
+    } else {
+        supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL as string, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string);
+    }
 
     const { data, error } = await supabase.auth.signUp({
         email, password
