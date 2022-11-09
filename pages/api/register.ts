@@ -1,17 +1,22 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { MailUtils } from './utils/MailUtils';
 
-export default async function handler(req: any, res: any) {
+const allowCors = (fn: any) => async (req: any, res: any) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
-    // another common pattern
-    // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
     res.setHeader(
         'Access-Control-Allow-Headers',
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
+    if (req.method === 'OPTIONS') {
+        res.status(200).end()
+        return
+    }
+    return await fn(req, res)
+}
 
+const handler = async (req: any, res: any) => {
     const { email, name, isProd } = req.body;
     const password: string = createPassword();
     let supabase: SupabaseClient;
@@ -126,3 +131,5 @@ const createPassword = () => {
 
     return password;
 }
+
+module.exports = allowCors(handler);
