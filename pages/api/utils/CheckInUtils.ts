@@ -35,7 +35,7 @@ export class CheckInUtils {
         const { data: attData, error: attError } = await supabase
             .from("attendances")
             .update({
-                checkInActive: false
+                checkInActive: null
             })
             .match({ id })
             .select()
