@@ -28,7 +28,7 @@ export default function handler(
                 .single();
 
             if (attError) {
-                console.log(attError);
+                res.status(500).json(attError);
             }
 
             const { error, data } = await supabase
@@ -37,7 +37,7 @@ export default function handler(
                 .match({ attId: id });
 
             if (attError) {
-                console.log(error);
+                res.status(500).json(error);
             }
 
             const userIds = data?.map((checkInData) => checkInData.userId);
@@ -54,8 +54,8 @@ export default function handler(
                 })
                 .match({ id })
                 .select();
+
+            res.status(200).end();
         }, 60000);
     }
-
-    res.status(200).end();
 }
