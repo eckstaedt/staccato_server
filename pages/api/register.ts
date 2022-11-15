@@ -1,7 +1,22 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { MailUtils } from './utils/MailUtils';
 
-export default async function handler(req: any, res: any) {
+const allowCors = (fn: any) => async (req: any, res: any) => {
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    )
+    if (req.method === 'OPTIONS') {
+        res.status(200).end()
+        return
+    }
+    return await fn(req, res)
+}
+
+const handler = async (req: any, res: any) => {
     const { email, name, isProd } = req.body;
     const password: string = createPassword();
     let supabase: SupabaseClient;
@@ -55,7 +70,7 @@ export default async function handler(req: any, res: any) {
                                         </tr>
                                         <tr>
                                             <td style="white-space: pre-line; padding: 10px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                                                Anbei deine Zugangsdaten für die Dirigentenschul-App${isProd ? "" : " (TESTUMGEBUNG)"}:<br/>E-Mail: ${email}<br/>Passwort: ${password}<br/><br/><a href="${isProd ? "https://app.dirigentenschule.de" : "https://staccato.vercel.app"}">Hierüber gelangst du zur App</a><br/><br/>Mit Gottes Segen,<br>Die Dirigentenschulleitung
+                                                Anbei deine Zugangsdaten für die Dirigentenschul-App:<br/>E-Mail: ${email}<br/>Passwort: ${password}<br/><br/><a href="https://app.dirigentenschule.de">Zur App</a><br/><br/>Mit Gottes Segen,<br>Die Dirigentenschulleitung
                                             </td>
                                         </tr>
                                     </table>
@@ -116,3 +131,5 @@ const createPassword = () => {
 
     return password;
 }
+
+module.exports = allowCors(handler);
