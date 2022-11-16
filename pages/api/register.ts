@@ -70,7 +70,7 @@ const handler = async (req: any, res: any) => {
                                         </tr>
                                         <tr>
                                             <td style="white-space: pre-line; padding: 10px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                                                Anbei deine Zugangsdaten für die Dirigentenschul-App:<br/>E-Mail: ${email}<br/>Passwort: ${password}<br/><br/><a href="https://app.dirigentenschule.de">Zur App</a><br/><br/>Mit Gottes Segen,<br>Die Dirigentenschulleitung
+                                                Anbei deine Zugangsdaten für die Dirigentenschul-App:<br/>E-Mail: ${email}<br/>Passwort: ${password}<br/><br/><a href="${isProd ? 'https://app.dirigentenschule.de' : 'https://staccato.vercel.app'}">Zur App</a><br/><br/>Mit Gottes Segen,<br>Die Dirigentenschulleitung
                                             </td>
                                         </tr>
                                     </table>

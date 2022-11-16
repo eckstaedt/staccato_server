@@ -70,6 +70,15 @@ export class CheckInUtils {
             .match({ id })
             .select();
 
+        const { error: errorCleanUp } = await supabase
+            .from("checkIn")
+            .delete()
+            .match({ attId: id });
+
+        if (errorCleanUp) {
+            throw error;
+        }
+
         return;
     }
 }
