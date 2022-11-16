@@ -65,7 +65,7 @@ export class CheckInUtils {
             .from("attendances")
             .update({
                 absentUsers,
-                checkInCompleted: true
+                attendanceCompleted: true
             })
             .match({ id })
             .select();
