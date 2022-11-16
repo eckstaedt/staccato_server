@@ -14,7 +14,7 @@ export class CheckInUtils {
         const { data, error } = await supabase
             .from("attendances")
             .select()
-            .lt("checkInActive", dayjs().subtract(1, "minute").toISOString());
+            .lt("checkInActive", dayjs().subtract(75, "seconds").toISOString());
 
         if (error) {
             throw error;
