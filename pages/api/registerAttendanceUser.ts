@@ -20,7 +20,13 @@ const handler = async (req: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     const { email, name, appName, url } = req.body;
     const password: string = createPassword();
-    const supabase: SupabaseClient = createClient(process.env.NEXT_PUBLIC_ATT_URL as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY as string);
+    let supabase: SupabaseClient;
+
+    if (appName === "SoS") {
+        supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY as string);
+    } else {
+        supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL_BOS as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY_BOS as string);
+    }
 
     const { data, error } = await supabase.auth.signUp({
         email, password
