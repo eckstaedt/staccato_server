@@ -55,7 +55,7 @@ const handler = async (req: any, res: any) => {
                         <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
                             <tr>
                                 <td align="center" style="color: #153643; font-size: 23px; font-weight: bold; font-family: Arial, sans-serif;">
-                                    <img src="https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/login.jpeg" alt="Header" width="100%" height="300" style="display: block;" />
+                                    <img src="${appName === "SoS" ? "https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/login.jpeg" : "https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/loginBlas.jpeg"}" alt="Header" width="100%" height="300" style="display: block;" />
                                     <div style="background: #ffffff; margin-top: -60px; position: relative; width: 100px; height: 100px; border-radius: 100px; border: 1px solid #005238;">
                                         <img src="https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/icon.png" alt="Creating Email Magic" height="80" style="display: block; margin-top: 10px" />
                                     </div>
