@@ -33,6 +33,7 @@ const handler = async (req: any, res: any) => {
 
     if (error) {
         res.status(500).end(JSON.stringify({ error }));
+        return;
     }
 
     const mailOptions: any = {
