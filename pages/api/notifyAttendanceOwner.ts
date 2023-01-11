@@ -28,7 +28,7 @@ const handler = async (req: any, res: any) => {
 
     const telegraf = new Telegraf(process.env.SOS_BOT as string);
 
-    telegraf.telegram.sendMessage(63117481, message);
+    telegraf.telegram.sendMessage(60965786, message);
 
     res.status(200).end(JSON.stringify({ success: true }));
 }
