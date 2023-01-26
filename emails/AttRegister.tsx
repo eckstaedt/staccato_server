@@ -39,7 +39,7 @@ export default function AttRegister(props: Props) {
                   <Text
                     style={{
                       ...paragraph,
-                      fontSize: 32,
+                      fontSize: 28,
                       fontWeight: 'bold',
                       textAlign: 'center',
                     }}
@@ -49,12 +49,12 @@ export default function AttRegister(props: Props) {
                   <Text
                     style={{
                       ...paragraph,
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: 'bold',
                       textAlign: 'center',
                     }}
                   >
-                    Anbei erhälst du deine Login Daten für die Anwesenheits App.
+                    Anbei erhälst du deine Login Daten für die {appName} App.
                   </Text>
                 </Container>
 
