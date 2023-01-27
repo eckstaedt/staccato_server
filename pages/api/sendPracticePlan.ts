@@ -17,9 +17,9 @@ const allowCors = (fn: any) => async (req: any, res: any) => {
 
 const handler = async (req: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const { name, telegramId, url } = req.body; // appName
+    const { name, telegramId, url } = req.body;
 
-    const telegraf = new Telegraf(process.env.VOS_BOT as string);
+    const telegraf = new Telegraf(process.env.SOS_BOT as string);
 
     telegraf.telegram.sendDocument(telegramId, url);
 
