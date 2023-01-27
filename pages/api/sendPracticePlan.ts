@@ -17,11 +17,11 @@ const allowCors = (fn: any) => async (req: any, res: any) => {
 
 const handler = async (req: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const { telegramId, url, shortName }: { url: string; telegramId: number, shortName: string } = req.body;
+    const { url, shortName }: { url: string; telegramId: number, shortName: string } = req.body;
 
     const telegraf = new Telegraf(shortName === "VoS" ? process.env.VOS_BOT as string : process.env.SOS_BOT as string);
 
-    telegraf.telegram.sendDocument(telegramId, url);
+    telegraf.telegram.sendDocument((shortName === "VoS" ? process.env.VOS_GROUP_ID : process.env.SOS_GROUP_ID) as string, url);
 
     res.status(200).end(JSON.stringify({ success: true }));
 }
