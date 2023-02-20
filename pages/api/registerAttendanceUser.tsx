@@ -28,8 +28,10 @@ const handler = async (req: any, res: any) => {
         supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY as string);
     } else if (shortName === "VoS") {
         supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL_VOS as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY_VOS as string);
-    } else {
+    } else if (shortName === "BoS") {
         supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL_BOS as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY_BOS as string);
+    } else {
+        supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL_JUCHO as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY_JUCHO as string);
     }
 
     const { data, error } = await supabase.auth.signUp({
@@ -47,7 +49,7 @@ const handler = async (req: any, res: any) => {
         name,
         appName,
         url,
-        imageUrl: appName === "Blasorchester" ? "https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/loginBlas.jpeg" : "https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/login.jpeg"
+        imageUrl: appName === "Jugendchor" ? "https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/loginChoir.jpeg" : appName === "Blasorchester" ? "https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/loginBlas.jpeg" : "https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/login.jpeg"
     };
     const emailHtml = render(<AttRegister {...props} />);
     const mailOptions: any = {
