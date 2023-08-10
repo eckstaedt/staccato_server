@@ -24,6 +24,8 @@ const handler = async (req: any, res: any) => {
         message = `${name} hat sich für den ${dates[0]} wieder angemeldet.`;
     } else if(type === 'lateSignout') {
         message = `${name} kommt an folgenden Terminen zu spät:\n- ${dates.join("\n- ")}\n\nGrund: ${reason}`;
+    } else if(type === 'lateSignin') {
+        message = `${name} kommt an folgenden Terminen doch pünktlich:\n- ${dates.join("\n- ")}\n\nGrund: ${reason}`;
     } else {
         message = `${name} hat sich für folgende Termine abgemeldet:\n- ${dates.join("\n- ")}\n\nGrund: ${reason}`;
     }
