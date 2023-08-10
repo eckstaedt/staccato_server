@@ -25,7 +25,7 @@ const handler = async (req: any, res: any) => {
     } else if(type === 'lateSignout') {
         message = `${name} kommt an folgenden Terminen zu spät:\n- ${dates.join("\n- ")}\n\nGrund: ${reason}`;
     } else {
-        message = `${name} hat sich für folgendende Termine abgemeldet:\n- ${dates.join("\n- ")}\n\nGrund: ${reason}`;
+        message = `${name} hat sich für folgende Termine abgemeldet:\n- ${dates.join("\n- ")}\n\nGrund: ${reason}`;
     }
 
     const telegraf = new Telegraf(process.env.SOS_BOT as string);
