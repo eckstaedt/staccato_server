@@ -23,9 +23,9 @@ const handler = async (req: any, res: any) => {
     const { email, name, appName, url, shortName } = req.body;
     const password: string = createPassword();
     let supabase: SupabaseClient;
-
+    console.log(process.env);
     if (shortName === "SoS") {
-        supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY as string);
+        supabase = createClient('https://dwexedvloevhzoanxefp.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3ZXhlZHZsb2V2aHpvYW54ZWZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njg1NDM1MjcsImV4cCI6MTk4NDExOTUyN30.7iCMeGLWRiB28Mxh9PyQk0pyFg4ooc9WKird3vr23r4');
     } else if (shortName === "VoS") {
         supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL_VOS as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY_VOS as string);
     } else if (shortName === "BoS") {
@@ -33,7 +33,7 @@ const handler = async (req: any, res: any) => {
     } else {
         supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL_JUCHO as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY_JUCHO as string);
     }
-
+ 
     const { data, error } = await supabase.auth.signUp({
         email, password
     });
