@@ -22,9 +22,11 @@ const handler = async (req: any, res: any) => {
 
     const telegraf = new Telegraf(shortName === "VoS" ? process.env.VOS_BOT as string : shortName === "BoS" ? process.env.BOS_BOT as string : shortName === "SoS" ? process.env.SOS_BOT as string : shortName === "GoS" ? process.env.GOS_BOT as string : process.env.JUCHO_BOT as string);
 
-    telegraf.telegram.sendDocument((shortName === "VoS" ? process.env.VOS_GROUP_ID : shortName === "BoS" ? process.env.BOS_GROUP_ID : shortName === "SoS" ? process.env.SOS_GROUP_ID : shortName === "GoS" ? process.env.GOS_GROUP_ID as string : process.env.JUCHO_GROUP_ID) as string, url);
-
-    res.status(200).end(JSON.stringify({ success: true }));
+    telegraf.telegram.sendDocument((shortName === "VoS" ? process.env.VOS_GROUP_ID : shortName === "BoS" ? process.env.BOS_GROUP_ID : shortName === "SoS" ? process.env.SOS_GROUP_ID : shortName === "GoS" ? process.env.GOS_GROUP_ID as string : process.env.JUCHO_GROUP_ID) as string, url).then(() => {
+        res.status(200).end(JSON.stringify({ success: true }));
+    }).catch((e) => {
+        res.status(400).end(JSON.stringify(e));
+    });
 }
 
 module.exports = allowCors(handler);
