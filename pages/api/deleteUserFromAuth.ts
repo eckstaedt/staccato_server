@@ -17,7 +17,7 @@ const allowCors = (fn: any) => async (req: any, res: any) => {
 
 const handler = async (req: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const { appShortName, userEmail } = req.body;
+    const { appShortName, id } = req.body;
     let supabase: SupabaseClient;
 
     if (appShortName === "SoS") {
@@ -32,22 +32,11 @@ const handler = async (req: any, res: any) => {
         supabase = createClient(process.env.NEXT_PUBLIC_ATT_URL_JUCHO as string, process.env.NEXT_PUBLIC_SUPABASE_ATT_KEY_JUCHO as string);
     }
 
-    const { data: { users }, error: errorListUsers } = await supabase.auth.admin.listUsers();
+    const { error: errorDeleteUser } = await supabase.auth.admin.deleteUser(id);
 
-    if (errorListUsers) {
-        res.status(500).end(JSON.stringify({ errorListUsers }));
+    if (errorDeleteUser) {
+        res.status(500).end(JSON.stringify({ errorDeleteUser }));
         return;
-    }
-
-    const authUser = users.find(user => user.email === userEmail);
-
-    if (authUser) {
-        const { data, error: errorDeleteUser } = await supabase.auth.admin.deleteUser(String(authUser?.id));
-
-        if (errorDeleteUser) {
-            res.status(500).end(JSON.stringify({ errorDeleteUser }));
-            return;
-        }
     }
 
     res.status(200).end();
