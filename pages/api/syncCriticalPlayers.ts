@@ -93,7 +93,7 @@ const handler = async (req: any, res: any) => {
             telegraf.telegram.sendMessage(63117481, `Neue Problemfälle (${shortName}):\n`);
         }
 
-        res.status(200).end(JSON.stringify({ success: true }));
+        res.status(200).end(JSON.stringify({ updated }));
     } else {
         res.status(400).end(JSON.stringify({ failure: "no players and attendances" }));
     }
