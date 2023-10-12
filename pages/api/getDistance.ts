@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 const allowCors = (fn: any) => async (req: any, res: any) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -24,6 +26,8 @@ const handler = async (req: any, res: any) => {
         const distance: number = Math.round(data.rows[0].elements[0].distance.value / 1000);
         res.status(200).end(JSON.stringify({ distance, success: true }));
     }
+
+    console.log(new Dayjs());
 
     res.status(200).end(JSON.stringify({ success: false }));
 }
