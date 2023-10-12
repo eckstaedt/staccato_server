@@ -25,11 +25,13 @@ const handler = async (req: any, res: any) => {
         const data = await response.json();
         const distance: number = Math.round(data.rows[0].elements[0].distance.value / 1000);
         res.status(200).end(JSON.stringify({ distance, success: true }));
+        return;
     }
 
     console.log(Dayjs);
 
     res.status(200).end(JSON.stringify({ success: false }));
+    return;
 }
 
 module.exports = allowCors(handler);
