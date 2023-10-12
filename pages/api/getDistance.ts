@@ -27,7 +27,7 @@ const handler = async (req: any, res: any) => {
         res.status(200).end(JSON.stringify({ distance, success: true }));
     }
 
-    console.log(new Dayjs());
+    console.log(Dayjs);
 
     res.status(200).end(JSON.stringify({ success: false }));
 }
