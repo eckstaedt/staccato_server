@@ -30,7 +30,8 @@ const handler = async (req: any, res: any) => {
     }
 
     const telegraf = new Telegraf(process.env.TRIPS_BOT as string);
-    telegraf.telegram.sendMessage(63117481, `Neue Registrierung vorhanden (${email}): https://trips.fecg-speyer.de`);
+    telegraf.telegram.sendMessage(63117481, `Neue Registrierung vorhanden: ${email}\nJetzt unter https://trips.fecg-speyer.de/tabs/einstellungen aktivieren`);
+    telegraf.telegram.sendMessage(process.env.TRIPS_ARWID_ID as string, `Neue Registrierung vorhanden: ${email}\nJetzt unter https://trips.fecg-speyer.de/tabs/einstellungen aktivieren`);
 
     res.status(200).end(JSON.stringify({ user: data.user }));
 }
