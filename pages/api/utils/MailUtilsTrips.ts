@@ -1,6 +1,6 @@
 import nodemailer, { SentMessageInfo, Transporter } from 'nodemailer';
 
-export class MailUtilsAttendance {
+export class MailUtilsTrips {
     public static async createTransporter() {
         const transporter: Transporter<SentMessageInfo> = nodemailer.createTransport({
             host: 'smtp.strato.de',
