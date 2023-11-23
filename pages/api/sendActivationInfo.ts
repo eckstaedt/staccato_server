@@ -23,7 +23,7 @@ const handler = async (req: any, res: any) => {
         from: process.env.STRATO_USER_TRIPS,
         to: email,
         subject: `Dein Account für die Trips-App wurde aktivert!`,
-        body: `Grüß dich ${firstName},</br></br>Dein Account wurde freigeschaltet. Du kannst dich jetzt mit deiner E-Mail Adresse und deinem zuvor vergebenem Passwort anmelden.</br><a href="https://trips.fecg-speyer.de">Hier anmelden!</a></br></br>Gottes Segen</br>`,
+        html: `Grüß dich ${firstName},</br></br>Dein Account wurde freigeschaltet. Du kannst dich jetzt mit deiner E-Mail Adresse und deinem zuvor vergebenem Passwort anmelden.</br><a href="https://trips.fecg-speyer.de">Hier anmelden!</a></br></br>Gottes Segen</br>`,
     };
 
     const mailSent: boolean = await sendMail(mailOptions);
