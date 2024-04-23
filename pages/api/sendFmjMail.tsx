@@ -20,7 +20,7 @@ const allowCors = (fn: any) => async (req: any, res: any) => {
 
 const handler = async (req: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const { name, project } = req.body;
+    const { name, project, email } = req.body;
     let supabase: SupabaseClient;
 
     supabase = createClient(process.env.SUPABASE_FMJ_URL as string, process.env.SUPABASE_FMJ_KEY as string);
@@ -32,7 +32,7 @@ const handler = async (req: any, res: any) => {
     const emailHtml = render(<FmjConfirm {...props} />);
     const mailOptions: any = {
         from: process.env.STRATO_FMJ_USER,
-        to: req.body.email,
+        to: email,
         subject: `Ferien mit Jesus: Zahlungsbestätigung`,
         html: emailHtml,
     };
