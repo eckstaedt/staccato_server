@@ -19,7 +19,6 @@ export default function FmjConfirm(props: Props) {
     return (
         <Html lang='de'>
         <Head />
-        <Preview>Deine Zugangsdaten für die Anwesenheits App</Preview>
         <Section style={main}>
           <Container style={container}>
             <Container style={{ ...paragraph, ...logo}}>
