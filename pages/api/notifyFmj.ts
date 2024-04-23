@@ -20,14 +20,15 @@ const handler = async (req: any, res: any) => {
     const { name, project, waitlist } = req.body;
 
     const telegraf = new Telegraf(process.env.FMJ_BOT as string);
+    let result;
 
     if (waitlist) {
-        telegraf.telegram.sendMessage(63117481, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}\nWarteliste: ${waitlist}`);
+        result = await telegraf.telegram.sendMessage(63117481, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}\nWarteliste: ${waitlist}`);
     } else {
-        telegraf.telegram.sendMessage(63117481, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}`);
+        result = await telegraf.telegram.sendMessage(63117481, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}`);
     }
 
-    res.status(200).end(JSON.stringify({ success: true }));
+    res.status(200).end(JSON.stringify({ success: JSON.stringify(result) }));
 }
 
 module.exports = allowCors(handler);
