@@ -21,9 +21,6 @@ const allowCors = (fn: any) => async (req: any, res: any) => {
 const handler = async (req: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     const { name, project, email } = req.body;
-    let supabase: SupabaseClient;
-
-    supabase = createClient(process.env.SUPABASE_FMJ_URL as string, process.env.SUPABASE_FMJ_KEY as string);
 
     const props: Props = {
         name,
