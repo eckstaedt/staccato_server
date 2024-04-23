@@ -17,11 +17,15 @@ const allowCors = (fn: any) => async (req: any, res: any) => {
 
 const handler = async (req: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const { name, project } = req.body;
+    const { name, project, waitlist } = req.body;
 
     const telegraf = new Telegraf(process.env.FMJ_BOT as string);
 
-    telegraf.telegram.sendMessage(63117481, 'Neue Anmeldung: ' + name + ' für "' + project + '"');
+    if (waitlist) {
+        telegraf.telegram.sendMessage(63117481, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}\nWarteliste: ${waitlist}`);
+    } else {
+        telegraf.telegram.sendMessage(63117481, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}`);
+    }
 
     res.status(200).end(JSON.stringify({ success: true }));
 }
