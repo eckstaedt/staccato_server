@@ -9,16 +9,12 @@ import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
 export interface Props {
-    email: string;
-    password: string;
     name: string;
-    appName: string;
-    url: string;
-    imageUrl: string;
+    project: string;
 }
 
-export default function AttRegister(props: Props) {
-    const { email, password, name, appName, url, imageUrl } = props;
+export default function FmjConfirm(props: Props) {
+    const { name, project } = props;
 
     return (
         <Html lang='de'>
@@ -27,12 +23,11 @@ export default function AttRegister(props: Props) {
         <Section style={main}>
           <Container style={container}>
             <Container style={{ ...paragraph, ...logo}}>
-              <Img style={logoImg} src="https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/1024.png" />
-              <Text>{ appName } Anwesenheit</Text>
+              <Img style={logoImg} src="https://wqmqbzzmicifozbuugji.supabase.co/storage/v1/object/public/general/android-chrome-512x512.png" />
+              <Text>Ferien mit Jesus</Text>
             </Container>
 
             <Container style={content}>
-              <Img style={headerImgStyle} width={620} src={imageUrl} />
 
               <Container style={boxInfos}>
                 <Container>
@@ -51,22 +46,16 @@ export default function AttRegister(props: Props) {
                       ...paragraph,
                       fontSize: 16,
                       fontWeight: 'bold',
-                      textAlign: 'center',
                     }}
                   >
-                    Anbei erhälst du deine Login Daten für die {appName} App.
+                    Vielen Dank für die Zahlung. Hiermit gilt diese als bestätigt. Du bist bei dem Projekt &apos;{project}&apos; dabei.
+                  <br></br>
+                  <br></br>
+                    Mit Gottes Segen,
+                  <br></br>
+                    Dein Ferien mit Jesus Team
                   </Text>
                 </Container>
-
-                <Text style={paragraph}>
-                  E-Mail: {email}
-                </Text>
-                <Text style={{ ...paragraph, marginTop: -5 }}>
-                  Passwort: {password}
-                </Text>
-                <Section style={containerButton}>
-                  <Button href={url} style={button}>Zur App</Button>
-                </Section>
               </Container>
             </Container>
 
