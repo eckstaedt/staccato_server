@@ -24,8 +24,10 @@ const handler = async (req: any, res: any) => {
 
     if (waitlist) {
         result = await telegraf.telegram.sendMessage(63117481, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}\nWarteliste: ${waitlist}`);
+        result = await telegraf.telegram.sendMessage(795693551, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}\nWarteliste: ${waitlist}`);
     } else {
         result = await telegraf.telegram.sendMessage(63117481, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}`);
+        result = await telegraf.telegram.sendMessage(795693551, `Neue Anmeldung\nName: ${name}\nProjekt: ${project}`);
     }
 
     res.status(200).end(JSON.stringify({ success: JSON.stringify(result) }));
