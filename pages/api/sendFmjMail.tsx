@@ -1,6 +1,6 @@
 import { render } from '@react-email/render';
 import { MailUtilsFmj } from './utils/MailUtilsFmj';
-import FmjConfirmPay from '../../emails/FmjConfirmPay';
+import FmjConfirmPay, { Props } from '../../emails/FmjConfirmPay';
 
 const allowCors = (fn: any) => async (req: any, res: any) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
