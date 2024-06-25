@@ -48,6 +48,7 @@ export default function FmjConfirm(props: Props) {
                     }}
                   >
                     Vielen Dank für die Anmeldung. Hiermit gilt diese als bestätigt. Du bist bei dem Projekt &apos;{project}&apos; dabei.
+                  <br></br>
                     {props.waitlist && ("Bei folgendem Projekt bist du auf der Warteliste: " + props.waitlist + ". Sobald ein Platz frei wird, wirst du benachrichtigt.")}
                   <br></br>
                   <br></br>
