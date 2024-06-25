@@ -19,11 +19,12 @@ const allowCors = (fn: any) => async (req: any, res: any) => {
 
 const handler = async (req: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const { name, project, email } = req.body;
+    const { name, project, email, waitlist } = req.body;
 
     const props: Props = {
         name,
         project,
+        waitlist
     };
     const emailHtml = render(<FmjConfirm {...props} />);
     const mailOptions: any = {

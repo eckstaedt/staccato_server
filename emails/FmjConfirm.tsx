@@ -4,13 +4,13 @@ import * as React from 'react';
 import { Head } from '@react-email/head';
 import { Img } from '@react-email/img';
 import { Container } from '@react-email/container';
-import { Preview } from '@react-email/preview';
 import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
 export interface Props {
     name: string;
     project: string;
+    waitlist?: string;
 }
 
 export default function FmjConfirm(props: Props) {
@@ -48,6 +48,7 @@ export default function FmjConfirm(props: Props) {
                     }}
                   >
                     Vielen Dank für die Anmeldung. Hiermit gilt diese als bestätigt. Du bist bei dem Projekt &apos;{project}&apos; dabei.
+                    {props.waitlist && ("Bei folgendem Projekt bist du auf der Warteliste: " + props.waitlist + ". Sobald ein Platz frei wird, wirst du benachrichtigt.")}
                   <br></br>
                   <br></br>
                     Mit Gottes Segen,
