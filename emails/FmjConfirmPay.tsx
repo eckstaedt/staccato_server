@@ -1,10 +1,8 @@
-import { Button } from '@react-email/button';
 import { Html } from '@react-email/html';
 import * as React from 'react';
 import { Head } from '@react-email/head';
 import { Img } from '@react-email/img';
 import { Container } from '@react-email/container';
-import { Preview } from '@react-email/preview';
 import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
@@ -52,7 +50,7 @@ export default function FmjConfirmPay(props: Props) {
                   <br></br>
                     Mit Gottes Segen,
                   <br></br>
-                    Dein Ferien mit Jesus Team
+                    Dein Ferien mit Jesus - Team
                   </Text>
                 </Container>
               </Container>

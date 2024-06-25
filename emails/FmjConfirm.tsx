@@ -47,14 +47,16 @@ export default function FmjConfirm(props: Props) {
                       fontWeight: 'bold',
                     }}
                   >
-                    Vielen Dank für die Anmeldung. Hiermit gilt diese als bestätigt. Du bist bei dem Projekt &apos;{project}&apos; dabei.
+                    deine Anmeldung ist bei uns eingegangen. Wir prüfen noch den Zahlungseingang und bestätigen deine Anmeldung, sobald das Geld eingegangen ist. Wir bitten daher um etwas Geduld.
                   <br></br>
-                    {props.waitlist && ("Bei folgendem Projekt bist du auf der Warteliste: " + props.waitlist + ". Sobald ein Platz frei wird, wirst du benachrichtigt.")}
+                    Projekt: {project};
+                  <br></br>
+                    {props.waitlist && ("Warteliste: " + props.waitlist)}
                   <br></br>
                   <br></br>
                     Mit Gottes Segen,
                   <br></br>
-                    Dein Ferien mit Jesus Team
+                    Dein Ferien mit Jesus - Team
                   </Text>
                 </Container>
               </Container>
