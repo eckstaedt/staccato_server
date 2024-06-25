@@ -13,7 +13,7 @@ export interface Props {
     project: string;
 }
 
-export default function FmjConfirm(props: Props) {
+export default function FmjConfirmPay(props: Props) {
     const { name, project } = props;
 
     return (
@@ -47,7 +47,7 @@ export default function FmjConfirm(props: Props) {
                       fontWeight: 'bold',
                     }}
                   >
-                    Vielen Dank für die Anmeldung. Hiermit gilt diese als bestätigt. Du bist bei dem Projekt &apos;{project}&apos; dabei.
+                    Vielen Dank für die Zahlung. Hiermit gilt diese als bestätigt. Du bist bei dem Projekt &apos;{project}&apos; dabei.
                   <br></br>
                   <br></br>
                     Mit Gottes Segen,

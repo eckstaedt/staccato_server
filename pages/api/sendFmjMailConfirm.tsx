@@ -1,6 +1,6 @@
 import { render } from '@react-email/render';
 import { MailUtilsFmj } from './utils/MailUtilsFmj';
-import FmjConfirmPay from '../../emails/FmjConfirmPay';
+import FmjConfirm, { Props } from '../../emails/FmjConfirm';
 
 const allowCors = (fn: any) => async (req: any, res: any) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
@@ -25,11 +25,11 @@ const handler = async (req: any, res: any) => {
         name,
         project,
     };
-    const emailHtml = render(<FmjConfirmPay {...props} />);
+    const emailHtml = render(<FmjConfirm {...props} />);
     const mailOptions: any = {
         from: process.env.STRATO_FMJ_USER,
         to: email,
-        subject: `Ferien mit Jesus: Zahlungsbestätigung`,
+        subject: `Ferien mit Jesus: Anmeldebestätigung`,
         html: emailHtml,
     };
 
