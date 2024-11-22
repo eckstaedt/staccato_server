@@ -45,10 +45,10 @@ export default function BibleConfirm(props: Props) {
                       fontWeight: 'normal',
                     }}
                   >
-                    vielen Dank für die Anmeldung. Diese ist hiermit bestätigt. Falls sich Änderungen unsererseits ergeben sollten, werden wir dich kontaktieren.
+                    vielen Dank für die Anmeldung. Diese ist hiermit bestätigt. Falls sich Änderungen unsererseits ergeben sollten, werden wir Sie kontaktieren.
                   <br></br>
                   <br></br>
-                    Bei Fragen, Anregunden oder einer <b>Stornierung</b>, antworte einfach auf diese Email, oder einfach eine Email an <a href='mailto:bibelausstellung@fecg-speyer.de'>bibelausstellung@fecg-speyer.de</a>. Wir helfen dir gerne weiter.
+                    Bei Fragen, Anregunden oder einer <b>Stornierung</b>, antworte Sie einfach auf diese Email, oder per Email an <a href='mailto:bibelausstellung@fecg-speyer.de'>bibelausstellung@fecg-speyer.de</a>. Wir helfen dir gerne weiter.
                   <br></br>
                   <br></br>
                     <b>Buchungsdetails</b>
