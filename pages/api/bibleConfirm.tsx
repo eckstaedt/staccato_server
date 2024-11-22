@@ -2,6 +2,8 @@ import { Telegraf } from 'telegraf';
 import { MailUtilsBible } from './utils/MailUtilsBible';
 import { render } from '@react-email/render';
 import BibleConfirm, { Props } from '../../emails/BibleConfirm';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import dayjs from 'dayjs';
 
 const allowCors = (fn: any) => async (req: any, res: any) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
@@ -27,8 +29,25 @@ const handler = async (req: any, res: any) => {
 
     result = await telegraf.telegram.sendMessage(63117481, `Neue Anmeldung\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.seats}\nEmail: ${record.email}\nSlot: ${record.slot}`);
 
+    const supabase: SupabaseClient = createClient(process.env.SUPABASE_FECG_URL as string, process.env.SUPABASE_FECG_KEY as string);
+
+    const { data, error } = await supabase
+        .from('bibleSlots')
+        .select(`
+            *,
+            date:bibleDates(id, date)
+        `)
+        .eq('id', record.slot);
+
+    if (error) {
+        res.status(500).end(JSON.stringify({ error }));
+        return;
+    }
+
     const props: Props = {
         name: record.firstName + " " + record.lastName,
+        slot: `${dayjs(data[0].date).format("DD.MM.YYYY")} ${data[0].start}`,
+        seats: record.seats,
     };
     const emailHtml = render(<BibleConfirm {...props} />);
     const mailOptions: any = {

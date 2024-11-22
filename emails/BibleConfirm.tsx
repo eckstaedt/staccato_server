@@ -9,10 +9,12 @@ import { Text } from '@react-email/text';
 
 export interface Props {
     name: string;
+    slot: string;
+    seats: number;
 }
 
 export default function BibleConfirm(props: Props) {
-    const { name } = props;
+    const { name, slot, seats } = props;
 
     return (
         <Html lang='de'>
@@ -45,7 +47,16 @@ export default function BibleConfirm(props: Props) {
                       fontWeight: 'bold',
                     }}
                   >
-                    deine Anmeldung ist bei uns eingegangen. Falls sich Änderungen ergeben, werden wir dich kontaktieren.
+                    vielen Dank für die Anmeldung. Diese ist hiermit bestätigt. Falls sich Änderungen unsererseits ergeben sollten, werden wir dich kontaktieren.
+                  <br></br>
+                    Bei Fragen, Anregunden oder einer Stornierung, antworte einfach auf diese Email, oder einfach eine Email an <a href='mailto:bibelausstellung@fecg-speyer.de'>bibelausstellung@fecg-speyer.de</a>. Wir helfen dir gerne weiter.
+                  <br></br>
+                  <br></br>
+                    Buchungsdetails
+                  <br></br>
+                    Datum & Uhrzeit: {slot}
+                  <br></br>
+                    Personenanzahl: {seats}
                   <br></br>
                   <br></br>
                     Mit Gottes Segen,

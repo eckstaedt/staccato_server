@@ -20,12 +20,12 @@ const allowCors = (fn: any) => async (req: any, res: any) => {
 
 const handler = async (req: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const { email, name, url } = req.body;
+    const { email, name } = req.body;
     const password: string = createPassword();
     let supabase: SupabaseClient;
 
     supabase = createClient(process.env.SUPABASE_ATTENDIX_URL as string, process.env.SUPABASE_ATTENDIX_KEY as string);
- 
+
     const { data, error } = await supabase.auth.signUp({
         email, password
     });
