@@ -46,7 +46,7 @@ const handler = async (req: any, res: any) => {
 
     const props: Props = {
         name: record.firstName + " " + record.lastName,
-        slot: `${dayjs(data[0].date).format("DD.MM.YYYY")} ${data[0].start}`,
+        slot: `${dayjs(data[0].date.date).format("DD.MM.YYYY")} ${data[0].start}`,
         seats: record.seats,
     };
     const emailHtml = render(<BibleConfirm {...props} />);
