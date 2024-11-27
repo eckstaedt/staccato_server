@@ -48,12 +48,12 @@ export default function BibleConfirm(props: Props) {
                     vielen Dank für die Anmeldung. Diese ist hiermit bestätigt. Falls sich Änderungen unsererseits ergeben sollten, werden wir Sie kontaktieren.
                   <br></br>
                   <br></br>
-                    Bei Fragen, Anregunden oder einer <b>Stornierung</b>, antworte Sie einfach auf diese Email, oder per Email an <a href='mailto:bibelausstellung@fecg-speyer.de'>bibelausstellung@fecg-speyer.de</a>. Wir helfen dir gerne weiter.
+                    Bei Fragen, Anregunden oder einer <b>Stornierung</b>, antworten Sie einfach auf diese Email, oder schreiben Sie eine Email an <a href='mailto:bibelausstellung@fecg-speyer.de'>bibelausstellung@fecg-speyer.de</a>. Wir helfen Ihnen gerne weiter.
                   <br></br>
                   <br></br>
                     <b>Buchungsdetails</b>
                   <br></br>
-                    Datum & Uhrzeit: {slot}
+                    Datum & Uhrzeit: {slot} Uhr
                   <br></br>
                     Personenanzahl: {seats}
                   <br></br>
