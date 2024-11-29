@@ -1,6 +1,6 @@
 {
     "crons": [{
         "path": "/api/notifyDailyKanate",
-        "schedule": "10 10 * * *"
+        "schedule": "0 22 * * *"
     }]
 }
