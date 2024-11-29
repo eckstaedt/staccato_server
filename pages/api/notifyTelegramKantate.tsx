@@ -25,7 +25,11 @@ const handler = async (req: any, res: any) => {
 
     const telegraf = new Telegraf(process.env.VOS_BOT as string);
 
-    await telegraf.telegram.sendMessage(63117481, `Kantate\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.persons}\nEmail: ${record.email}${record.questions ? '\nFrage: ' + record.questions : ''}`);
+    await telegraf.telegram.sendMessage(
+        63117481,
+        `*Kantate*\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.persons}\nEmail: ${record.email}${record.questions ? '\nFrage: ' + record.questions : ''}`,
+        { parse_mode: 'Markdown' }
+    );
 
     const props: Props = {
         name: record.firstName + " " + record.lastName,

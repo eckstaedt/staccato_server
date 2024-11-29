@@ -26,7 +26,11 @@ const handler = async (req: any, res: any) => {
 
     const telegraf = new Telegraf(process.env.VOS_BOT as string);
 
-    await telegraf.telegram.sendMessage(63117481, `Bibelausstellung\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.seats}\nEmail: ${record.email}\nSlot: ${record.slot}`);
+    await telegraf.telegram.sendMessage(
+        63117481,
+        `*Bibelausstellung*\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.seats}\nEmail: ${record.email}\nSlot: ${record.slot}`,
+        { parse_mode: 'Markdown' },
+    );
 
     const supabase: SupabaseClient = createClient(process.env.SUPABASE_FECG_URL as string, process.env.SUPABASE_FECG_KEY as string);
 
