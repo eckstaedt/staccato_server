@@ -1,0 +1,6 @@
+{
+    "crons": [{
+        "path": "/api/notifyDailyKanate",
+        "schedule": "10 10 * * *"
+    }]
+}

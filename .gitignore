@@ -32,9 +32,17 @@ yarn-error.log*
 
 # vercel
 .vercel
+.vscode/*
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 .env
+
+supabase/.env
+
+src/*
+components.json
+postcss.config.js
+tailwind.config.js

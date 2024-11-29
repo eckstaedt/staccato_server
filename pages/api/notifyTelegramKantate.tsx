@@ -1,9 +1,8 @@
 import { Telegraf } from 'telegraf';
 import { MailUtilsFecg } from './utils/MailUtilsFecg';
-import { render } from '@react-email/render';
-import BibleConfirm, { Props } from '../../emails/BibleConfirm';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import dayjs from 'dayjs';
+import { render } from '@react-email/render';
+import KantateConfirm, { Props } from '../../emails/KantateConfirm';
 
 const allowCors = (fn: any) => async (req: any, res: any) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
@@ -26,44 +25,28 @@ const handler = async (req: any, res: any) => {
 
     const telegraf = new Telegraf(process.env.VOS_BOT as string);
 
-    await telegraf.telegram.sendMessage(63117481, `Bibelausstellung\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.seats}\nEmail: ${record.email}\nSlot: ${record.slot}`);
-
-    const supabase: SupabaseClient = createClient(process.env.SUPABASE_FECG_URL as string, process.env.SUPABASE_FECG_KEY as string);
-
-    const { data, error } = await supabase
-        .from('bibleSlots')
-        .select(`
-            *,
-            date:bibleDates(id, date)
-        `)
-        .eq('id', record.slot);
-
-    if (error) {
-        res.status(500).end(JSON.stringify({ error }));
-        return;
-    }
+    await telegraf.telegram.sendMessage(63117481, `Kantate\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.persons}\nEmail: ${record.email}${record.questions ? '\nFrage: ' + record.questions : ''}`);
 
     const props: Props = {
         name: record.firstName + " " + record.lastName,
-        slot: `${dayjs(data[0].date.date).format("DD.MM.YYYY")} ${data[0].start}`,
-        seats: record.seats,
+        seats: record.persons,
     };
-    const emailHtml = render(<BibleConfirm {...props} />);
+    const emailHtml = render(<KantateConfirm {...props} />);
     const mailOptions: any = {
-        from: process.env.STRATO_BIBLE_USER,
+        from: process.env.STRATO_KANTATE_USER,
         to: record.email,
-        subject: `Bibelausstellung: Anmeldebestätigung`,
+        subject: `Kantate: Anmeldebestätigung`,
         html: emailHtml,
     };
 
     const mailSent: boolean = await sendMail(mailOptions);
 
-    res.status(200).end(JSON.stringify({ mailSent }));
+    res.status(200).end(JSON.stringify({ success: JSON.stringify(mailSent) }));
 }
 
 const sendMail = (mailOptions: any): Promise<boolean> => {
     return new Promise(async (resolve) => {
-        const transporter = await MailUtilsFecg.createTransporter(process.env.STRATO_BIBLE_USER as string);
+        const transporter = await MailUtilsFecg.createTransporter(process.env.STRATO_KANTATE_USER as string);
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
