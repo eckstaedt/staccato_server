@@ -20,9 +20,9 @@ const handler = async (req: any, res: any) => {
     const { email, name, message } = req.body;
 
     const mailOptions: any = {
-        from: email,
+        from: "info@fecg-speyer.de",
         to: "info@fecg-speyer.de",
-        subject: `Kontaktformular Website: Anfrage von ${name}`,
+        subject: `Kontaktformular Website: Anfrage von ${name} (${email})`,
         html: message,
     };
 
