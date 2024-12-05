@@ -22,7 +22,7 @@ const handler = async (req: any, res: any) => {
     const mailOptions: any = {
         from: "info@fecg-speyer.de",
         to: "info@fecg-speyer.de",
-        subject: `Kontaktformular Website: Anfrage von ${name} (${email})`,
+        subject: `Kontaktformular: Anfrage von ${name} (${email})`,
         html: message,
     };
 
