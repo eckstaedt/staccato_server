@@ -30,6 +30,11 @@ const handler = async (req: any, res: any) => {
         `*Kantate*\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.persons}\nEmail: ${record.email}${record.questions ? '\nFrage: ' + record.questions : ''}`,
         { parse_mode: 'Markdown' }
     );
+    await telegraf.telegram.sendMessage(
+        590859681,
+        `*Kantate*\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.persons}\nEmail: ${record.email}${record.questions ? '\nFrage: ' + record.questions : ''}`,
+        { parse_mode: 'Markdown' }
+    );
 
     const props: Props = {
         name: record.firstName + " " + record.lastName,
