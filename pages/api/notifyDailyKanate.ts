@@ -39,6 +39,7 @@ const handler = async (req: any, res: any) => {
     const telegraf = new Telegraf(process.env.VOS_BOT as string);
 
     await telegraf.telegram.sendMessage(63117481, `Kantate\nAnzahl Anmeldungen: ${persons}`);
+    await telegraf.telegram.sendMessage(590859681, `Kantate\nAnzahl Anmeldungen: ${persons}`);
 
     res.status(200).end(JSON.stringify({ success: true }));
 }
