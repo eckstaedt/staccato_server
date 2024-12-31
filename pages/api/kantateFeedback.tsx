@@ -62,86 +62,6 @@ module.exports = allowCors(handler);
 
 const first = [
     {
-        "id": 105,
-        "created_at": "2024-11-19T21:35:43.688711+00:00",
-        "firstName": "Eric",
-        "lastName": "Lutz",
-        "email": "b.e.lutz@gmx.net",
-        "persons": 3,
-        "questions": "",
-        "active": true
-    },
-    {
-        "id": 106,
-        "created_at": "2024-11-26T15:27:20.246659+00:00",
-        "firstName": "Anna",
-        "lastName": "Lakmann",
-        "email": "valentina.oeri@gmail.com",
-        "persons": 5,
-        "questions": "",
-        "active": true
-    },
-    {
-        "id": 107,
-        "created_at": "2024-11-26T15:39:38.463663+00:00",
-        "firstName": "Reinhold",
-        "lastName": "Lakmann",
-        "email": "nadinelakmann1980@gmail.com",
-        "persons": 4,
-        "questions": "",
-        "active": true
-    },
-    {
-        "id": 108,
-        "created_at": "2024-11-27T08:44:22.708081+00:00",
-        "firstName": "tobias",
-        "lastName": "gesswein",
-        "email": "tobiasgesswein94@gmail.com",
-        "persons": 4,
-        "questions": "",
-        "active": true
-    },
-    {
-        "id": 109,
-        "created_at": "2024-11-27T08:52:59.414227+00:00",
-        "firstName": "Anja",
-        "lastName": "Bunzel",
-        "email": "anja_bunzel@hotmail.com",
-        "persons": 1,
-        "questions": "",
-        "active": true
-    },
-    {
-        "id": 110,
-        "created_at": "2024-11-27T08:54:28.802076+00:00",
-        "firstName": "Ellen",
-        "lastName": "Kolm",
-        "email": "ellen.kolm@gmx.de",
-        "persons": 1,
-        "questions": "",
-        "active": true
-    },
-    {
-        "id": 111,
-        "created_at": "2024-11-27T15:19:52.141306+00:00",
-        "firstName": "Vivian",
-        "lastName": "Trippel",
-        "email": "vivimalia@gmx.de",
-        "persons": 3,
-        "questions": "",
-        "active": true
-    },
-    {
-        "id": 112,
-        "created_at": "2024-11-27T22:19:38.314917+00:00",
-        "firstName": "Jonas",
-        "lastName": "Merling",
-        "email": "merlingjonas@gmail.com",
-        "persons": 1,
-        "questions": "",
-        "active": true
-    },
-    {
         "id": 113,
         "created_at": "2024-11-27T22:39:14.325155+00:00",
         "firstName": "Jessica",
@@ -221,6 +141,9 @@ const first = [
         "questions": "",
         "active": true
     },
+];
+
+const second = [
     {
         "id": 122,
         "created_at": "2024-11-29T09:48:46.444083+00:00",
@@ -337,16 +260,6 @@ const first = [
         "firstName": "Marianne",
         "lastName": "Ganske",
         "email": "leonierusezki@gmail.com",
-        "persons": 2,
-        "questions": "",
-        "active": true
-    },
-    {
-        "id": 999,
-        "created_at": "2024-12-03T22:13:31.573234+00:00",
-        "firstName": "Letze",
-        "lastName": "Mail",
-        "email": "eckstaedt98@gmail.com",
         "persons": 2,
         "questions": "",
         "active": true
