@@ -32,6 +32,7 @@ const handler = async (_: any, res: any) => {
         const mailOptions: any = {
             from: process.env.STRATO_KANTATE_USER,
             to: rec.email,
+            bcc: "kantate@fecg-speyer.de",
             subject: `Kantate: Feedback`,
             html: emailHtml,
         };
