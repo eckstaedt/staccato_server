@@ -541,9 +541,6 @@ const old = [
         "questions": "",
         "active": true
     },
-];
-
-const first = [
     {
         "id": 169,
         "created_at": "2024-12-08T17:25:25.638293+00:00",
@@ -626,7 +623,7 @@ const first = [
     },
 ];
 
-const mailsToSend = [
+const first = [
     {
         "id": 178,
         "created_at": "2024-12-09T12:21:21.766692+00:00",
@@ -707,6 +704,10 @@ const mailsToSend = [
         "questions": "",
         "active": true
     },
+];
+
+const mailsToSend = [
+
     {
         "id": 191,
         "created_at": "2024-12-10T16:08:00.99254+00:00",
