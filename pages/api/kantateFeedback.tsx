@@ -60,7 +60,7 @@ const sendMail = (mailOptions: any, transporter: any): Promise<boolean> => {
 
 module.exports = allowCors(handler);
 
-const first = [
+const old = [
     {
         "id": 113,
         "created_at": "2024-11-27T22:39:14.325155+00:00",
@@ -143,7 +143,7 @@ const first = [
     },
 ];
 
-const second = [
+const first = [
     {
         "id": 122,
         "created_at": "2024-11-29T09:48:46.444083+00:00",
@@ -224,6 +224,9 @@ const second = [
         "questions": "",
         "active": true
     },
+];
+
+const second = [
     {
         "id": 134,
         "created_at": "2024-12-02T16:19:21.668283+00:00",
