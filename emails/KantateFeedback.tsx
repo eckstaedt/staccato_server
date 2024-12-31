@@ -44,8 +44,7 @@ export default function KantateFeedback(props: Props) {
                     }}
                   >
                   <br></br>
-                  <br></br>
-                  einige Tage sind nun vergangen, seit Sie bei der Kantate dabei waren. Wir hoffen, dass Sie einen gesegneten Abend hatten. Es würde uns freuen, wenn Sie uns ein Feedback geben könnten. Dies hilft uns, uns zu verbessern und besser auf Ihre Bedürfnisse einzugehen.
+                  einige Tage sind nun vergangen, seit Sie bei der Kantate dabei waren. Wir hoffen, dass Sie einen gesegneten Abend hatten. Es würde uns freuen, wenn Sie uns Feedback geben könnten. Dies hilft uns, uns zu verbessern und besser auf Ihre Bedürfnisse einzugehen.
                   <br></br>
                   <br></br>
                   <b><a href='https://www.fecg-speyer.de/kantate/feedback' style={{ color: "#438e96" }}>Hier geht es zum Feedbackformular</a></b>

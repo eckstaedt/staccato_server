@@ -20,29 +20,31 @@ const allowCors = (fn: any) => async (req: any, res: any) => {
 
 const handler = async (_: any, res: any) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
+    const transporter = await MailUtilsFecg.createTransporter(process.env.STRATO_KANTATE_USER as string);
+    const results = [];
 
-    const props: Props = {
-        name: "Matthias Eckstädt"
-    };
+    for (const rec of first) {
+        const props: Props = {
+            name: `${rec.firstName} ${rec.lastName}`,
+        };
 
-    const emailHtml = render(<KantateFeedback {...props} />);
-    const mailOptions: any = {
-        from: process.env.STRATO_KANTATE_USER,
-        to: "eckstaedt98@gmail.com",
-        subject: `Kantate: Feedback`,
-        html: emailHtml,
-    };
+        const emailHtml = render(<KantateFeedback {...props} />);
+        const mailOptions: any = {
+            from: process.env.STRATO_KANTATE_USER,
+            to: rec.email,
+            subject: `Kantate: Feedback`,
+            html: emailHtml,
+        };
 
-    const mailSent: boolean = await sendMail(mailOptions);
+        results.push(await sendMail(mailOptions, transporter));
+    }
 
-    res.status(200).end(JSON.stringify({ success: JSON.stringify(mailSent) }));
+    res.status(200).end(JSON.stringify({ success: JSON.stringify(results) }));
 }
 
-const sendMail = (mailOptions: any): Promise<boolean> => {
+const sendMail = (mailOptions: any, transporter: any): Promise<boolean> => {
     return new Promise(async (resolve) => {
-        const transporter = await MailUtilsFecg.createTransporter(process.env.STRATO_KANTATE_USER as string);
-
-        transporter.sendMail(mailOptions, function (error, info) {
+        transporter.sendMail(mailOptions, function (error: any, info: any) {
             if (error) {
                 console.log("error is " + error);
                 resolve(false);
@@ -57,7 +59,7 @@ const sendMail = (mailOptions: any): Promise<boolean> => {
 
 module.exports = allowCors(handler);
 
-const mailsToSend = [
+const first = [
     {
         "id": 105,
         "created_at": "2024-11-19T21:35:43.688711+00:00",
@@ -71,7 +73,7 @@ const mailsToSend = [
     {
         "id": 106,
         "created_at": "2024-11-26T15:27:20.246659+00:00",
-        "firstName": "Anna ",
+        "firstName": "Anna",
         "lastName": "Lakmann",
         "email": "valentina.oeri@gmail.com",
         "persons": 5,
@@ -81,8 +83,8 @@ const mailsToSend = [
     {
         "id": 107,
         "created_at": "2024-11-26T15:39:38.463663+00:00",
-        "firstName": "Reinhold ",
-        "lastName": "Lakmann ",
+        "firstName": "Reinhold",
+        "lastName": "Lakmann",
         "email": "nadinelakmann1980@gmail.com",
         "persons": 4,
         "questions": "",
@@ -91,7 +93,7 @@ const mailsToSend = [
     {
         "id": 108,
         "created_at": "2024-11-27T08:44:22.708081+00:00",
-        "firstName": "tobias ",
+        "firstName": "tobias",
         "lastName": "gesswein",
         "email": "tobiasgesswein94@gmail.com",
         "persons": 4,
@@ -101,8 +103,8 @@ const mailsToSend = [
     {
         "id": 109,
         "created_at": "2024-11-27T08:52:59.414227+00:00",
-        "firstName": "Anja ",
-        "lastName": "Bunzel ",
+        "firstName": "Anja",
+        "lastName": "Bunzel",
         "email": "anja_bunzel@hotmail.com",
         "persons": 1,
         "questions": "",
@@ -111,7 +113,7 @@ const mailsToSend = [
     {
         "id": 110,
         "created_at": "2024-11-27T08:54:28.802076+00:00",
-        "firstName": "Ellen ",
+        "firstName": "Ellen",
         "lastName": "Kolm",
         "email": "ellen.kolm@gmx.de",
         "persons": 1,
@@ -161,7 +163,7 @@ const mailsToSend = [
     {
         "id": 115,
         "created_at": "2024-11-28T15:18:49.450419+00:00",
-        "firstName": "Ingrid ",
+        "firstName": "Ingrid",
         "lastName": "Jung",
         "email": "ingrid-1990@web.de",
         "persons": 4,
@@ -171,8 +173,8 @@ const mailsToSend = [
     {
         "id": 116,
         "created_at": "2024-11-28T16:24:10.704276+00:00",
-        "firstName": "Lara ",
-        "lastName": "Sadlowski ",
+        "firstName": "Lara",
+        "lastName": "Sadlowski",
         "email": "sadlowskilara@gmail.com",
         "persons": 1,
         "questions": "",
@@ -201,7 +203,7 @@ const mailsToSend = [
     {
         "id": 120,
         "created_at": "2024-11-28T20:52:20.489717+00:00",
-        "firstName": "Jaqueline ",
+        "firstName": "Jaqueline",
         "lastName": "Fröse",
         "email": "jaquelinefroese239@gmail.com",
         "persons": 1,
@@ -221,8 +223,8 @@ const mailsToSend = [
     {
         "id": 122,
         "created_at": "2024-11-29T09:48:46.444083+00:00",
-        "firstName": "Vera ",
-        "lastName": "Schramke ",
+        "firstName": "Vera",
+        "lastName": "Schramke",
         "email": "veraf85@gmx.de",
         "persons": 2,
         "questions": "",
@@ -232,7 +234,7 @@ const mailsToSend = [
         "id": 126,
         "created_at": "2024-11-29T18:00:43.197473+00:00",
         "firstName": "Anja",
-        "lastName": "Lipowcan ",
+        "lastName": "Lipowcan",
         "email": "Re.Belik@web.de",
         "persons": 3,
         "questions": "",
@@ -241,7 +243,7 @@ const mailsToSend = [
     {
         "id": 127,
         "created_at": "2024-11-29T22:52:52.796846+00:00",
-        "firstName": "Anita ",
+        "firstName": "Anita",
         "lastName": "Gesswein",
         "email": "a.gesswein@yahoo.com",
         "persons": 5,
@@ -301,7 +303,7 @@ const mailsToSend = [
     {
         "id": 134,
         "created_at": "2024-12-02T16:19:21.668283+00:00",
-        "firstName": "Christine ",
+        "firstName": "Christine",
         "lastName": "Rose",
         "email": "Zimmermann_christa@gmx.net",
         "persons": 5,
@@ -331,13 +333,26 @@ const mailsToSend = [
     {
         "id": 137,
         "created_at": "2024-12-03T22:13:31.573234+00:00",
-        "firstName": "Marianne ",
-        "lastName": "Ganske ",
+        "firstName": "Marianne",
+        "lastName": "Ganske",
         "email": "leonierusezki@gmail.com",
         "persons": 2,
         "questions": "",
         "active": true
     },
+    {
+        "id": 999,
+        "created_at": "2024-12-03T22:13:31.573234+00:00",
+        "firstName": "Letze",
+        "lastName": "Mail",
+        "email": "eckstaedt98@gmail.com",
+        "persons": 2,
+        "questions": "",
+        "active": true
+    },
+];
+
+const mailsToSend = [
     {
         "id": 138,
         "created_at": "2024-12-04T06:29:38.179056+00:00",
@@ -361,8 +376,8 @@ const mailsToSend = [
     {
         "id": 140,
         "created_at": "2024-12-04T08:06:51.436803+00:00",
-        "firstName": "Louis ",
-        "lastName": "Bullert ",
+        "firstName": "Louis",
+        "lastName": "Bullert",
         "email": "louis.bullert1@gmail.com",
         "persons": 1,
         "questions": "",
@@ -411,8 +426,8 @@ const mailsToSend = [
     {
         "id": 145,
         "created_at": "2024-12-05T11:41:42.319998+00:00",
-        "firstName": "waldemar ",
-        "lastName": "Dachtler ",
+        "firstName": "waldemar",
+        "lastName": "Dachtler",
         "email": "wodila@online.de",
         "persons": 6,
         "questions": "",
@@ -451,8 +466,8 @@ const mailsToSend = [
     {
         "id": 149,
         "created_at": "2024-12-05T20:58:21.906005+00:00",
-        "firstName": "Lina ",
-        "lastName": "Akulenko ",
+        "firstName": "Lina",
+        "lastName": "Akulenko",
         "email": "linaakulenko@gmail.com",
         "persons": 3,
         "questions": "",
@@ -491,8 +506,8 @@ const mailsToSend = [
     {
         "id": 153,
         "created_at": "2024-12-06T09:58:49.322657+00:00",
-        "firstName": "Jenny ",
-        "lastName": "Gorjaev ",
+        "firstName": "Jenny",
+        "lastName": "Gorjaev",
         "email": "jenny_go@web.de",
         "persons": 3,
         "questions": "",
@@ -511,7 +526,7 @@ const mailsToSend = [
     {
         "id": 155,
         "created_at": "2024-12-06T12:01:35.111488+00:00",
-        "firstName": "Luanne ",
+        "firstName": "Luanne",
         "lastName": "Kunz",
         "email": "luannekunz45@gmail.com",
         "persons": 3,
@@ -521,8 +536,8 @@ const mailsToSend = [
     {
         "id": 157,
         "created_at": "2024-12-06T18:38:14.497017+00:00",
-        "firstName": "Steven ",
-        "lastName": "Buling ",
+        "firstName": "Steven",
+        "lastName": "Buling",
         "email": "stevenbuling@gmx.de",
         "persons": 5,
         "questions": "",
@@ -561,7 +576,7 @@ const mailsToSend = [
     {
         "id": 161,
         "created_at": "2024-12-07T08:14:18.305567+00:00",
-        "firstName": "Simone ",
+        "firstName": "Simone",
         "lastName": "Nehring",
         "email": "simone.nehring@web.de",
         "persons": 1,
@@ -601,8 +616,8 @@ const mailsToSend = [
     {
         "id": 165,
         "created_at": "2024-12-08T08:40:37.711014+00:00",
-        "firstName": "Oksana ",
-        "lastName": "Frank ",
+        "firstName": "Oksana",
+        "lastName": "Frank",
         "email": "ksenja19@yahoo.com",
         "persons": 6,
         "questions": "",
@@ -621,8 +636,8 @@ const mailsToSend = [
     {
         "id": 167,
         "created_at": "2024-12-08T14:39:03.410202+00:00",
-        "firstName": "Waldemar ",
-        "lastName": "Barleben ",
+        "firstName": "Waldemar",
+        "lastName": "Barleben",
         "email": "waldemarbarleben@gmail.com",
         "persons": 3,
         "questions": "",
@@ -651,7 +666,7 @@ const mailsToSend = [
     {
         "id": 170,
         "created_at": "2024-12-08T17:52:23.383286+00:00",
-        "firstName": "Stefan ",
+        "firstName": "Stefan",
         "lastName": "Keller",
         "email": "stefan.keller03@gmail.com",
         "persons": 2,
@@ -691,7 +706,7 @@ const mailsToSend = [
     {
         "id": 174,
         "created_at": "2024-12-08T23:03:46.0511+00:00",
-        "firstName": "Jennifer ",
+        "firstName": "Jennifer",
         "lastName": "Neubauer",
         "email": "fastkatharina@gmail.com",
         "persons": 2,
@@ -711,7 +726,7 @@ const mailsToSend = [
     {
         "id": 176,
         "created_at": "2024-12-09T10:19:10.197807+00:00",
-        "firstName": "David ",
+        "firstName": "David",
         "lastName": "Bohle",
         "email": "david.bohle15@gmail.com",
         "persons": 3,
@@ -741,8 +756,8 @@ const mailsToSend = [
     {
         "id": 180,
         "created_at": "2024-12-09T16:11:08.739968+00:00",
-        "firstName": "Angelina ",
-        "lastName": "Kunz ",
+        "firstName": "Angelina",
+        "lastName": "Kunz",
         "email": "angelina-koenig@web.de",
         "persons": 7,
         "questions": "",
@@ -761,8 +776,8 @@ const mailsToSend = [
     {
         "id": 187,
         "created_at": "2024-12-10T12:14:40.478077+00:00",
-        "firstName": "Tobias ",
-        "lastName": "Märtz ",
+        "firstName": "Tobias",
+        "lastName": "Märtz",
         "email": "tobiasmaertz@t-online.de",
         "persons": 2,
         "questions": "",
@@ -771,7 +786,7 @@ const mailsToSend = [
     {
         "id": 188,
         "created_at": "2024-12-10T13:29:37.906258+00:00",
-        "firstName": "Matthias ",
+        "firstName": "Matthias",
         "lastName": "Krüger",
         "email": "krueger_matthias@gmx.de",
         "persons": 4,
@@ -861,7 +876,7 @@ const mailsToSend = [
     {
         "id": 199,
         "created_at": "2024-12-11T09:05:32.035824+00:00",
-        "firstName": "Alexandra ",
+        "firstName": "Alexandra",
         "lastName": "Fast",
         "email": "alexandra.fast@yahoo.de",
         "persons": 3,
@@ -881,8 +896,8 @@ const mailsToSend = [
     {
         "id": 201,
         "created_at": "2024-12-11T17:03:30.311664+00:00",
-        "firstName": "Anastasia ",
-        "lastName": "Oster ",
+        "firstName": "Anastasia",
+        "lastName": "Oster",
         "email": "anastasiaoster@web.de",
         "persons": 2,
         "questions": "",
@@ -891,7 +906,7 @@ const mailsToSend = [
     {
         "id": 202,
         "created_at": "2024-12-11T17:19:35.247018+00:00",
-        "firstName": "Beate ",
+        "firstName": "Beate",
         "lastName": "Fürst",
         "email": "b.fuerst07@gmail.com",
         "persons": 3,
@@ -901,8 +916,8 @@ const mailsToSend = [
     {
         "id": 203,
         "created_at": "2024-12-11T18:06:54.802745+00:00",
-        "firstName": "Nicole ",
-        "lastName": "Maier ",
+        "firstName": "Nicole",
+        "lastName": "Maier",
         "email": "nicole_maier19@web.de",
         "persons": 2,
         "questions": "",
@@ -931,8 +946,8 @@ const mailsToSend = [
     {
         "id": 206,
         "created_at": "2024-12-12T08:19:38.131166+00:00",
-        "firstName": "Elias ",
-        "lastName": "Langlitz ",
+        "firstName": "Elias",
+        "lastName": "Langlitz",
         "email": "eliaslanglitz30@gmail.com",
         "persons": 9,
         "questions": "4 kinder",
@@ -961,8 +976,8 @@ const mailsToSend = [
     {
         "id": 210,
         "created_at": "2024-12-12T16:02:50.25468+00:00",
-        "firstName": "Michael ",
-        "lastName": "Richert ",
+        "firstName": "Michael",
+        "lastName": "Richert",
         "email": "michael_richert@gmx.de",
         "persons": 8,
         "questions": "",
@@ -981,8 +996,8 @@ const mailsToSend = [
     {
         "id": 212,
         "created_at": "2024-12-12T18:12:50.195247+00:00",
-        "firstName": "Ljuba ",
-        "lastName": "Hornus ",
+        "firstName": "Ljuba",
+        "lastName": "Hornus",
         "email": "familyhornus@gmx.de",
         "persons": 2,
         "questions": "",
@@ -991,7 +1006,7 @@ const mailsToSend = [
     {
         "id": 214,
         "created_at": "2024-12-12T19:54:51.932239+00:00",
-        "firstName": "Maria ",
+        "firstName": "Maria",
         "lastName": "erz",
         "email": "m.erz87@web.de",
         "persons": 4,
@@ -1001,7 +1016,7 @@ const mailsToSend = [
     {
         "id": 215,
         "created_at": "2024-12-12T20:09:17.535439+00:00",
-        "firstName": "Luca ",
+        "firstName": "Luca",
         "lastName": "Jeske",
         "email": "jeskeluca@gmail.com",
         "persons": 6,
@@ -1071,18 +1086,18 @@ const mailsToSend = [
     {
         "id": 222,
         "created_at": "2024-12-13T08:18:01.449331+00:00",
-        "firstName": "Merkel ",
+        "firstName": "Merkel",
         "lastName": "Swetlana",
         "email": "andreas-merkel@gmx.de",
         "persons": 4,
-        "questions": "Personen zwischen 3-4 ",
+        "questions": "Personen zwischen 3-4",
         "active": true
     },
     {
         "id": 223,
         "created_at": "2024-12-13T08:27:45.771106+00:00",
-        "firstName": "ida ",
-        "lastName": "kussmaul ",
+        "firstName": "ida",
+        "lastName": "kussmaul",
         "email": "idakuss85@gmail.com",
         "persons": 4,
         "questions": "",
@@ -1111,8 +1126,8 @@ const mailsToSend = [
     {
         "id": 228,
         "created_at": "2024-12-13T11:26:15.346767+00:00",
-        "firstName": "Karl ",
-        "lastName": "Kirchhöfer ",
+        "firstName": "Karl",
+        "lastName": "Kirchhöfer",
         "email": "karlolgakirch@gmail.com",
         "persons": 5,
         "questions": "",
@@ -1122,7 +1137,7 @@ const mailsToSend = [
         "id": 229,
         "created_at": "2024-12-13T11:29:27.799507+00:00",
         "firstName": "Paul",
-        "lastName": "Fast ",
+        "lastName": "Fast",
         "email": "spafa@web.de",
         "persons": 3,
         "questions": "",
@@ -1141,8 +1156,8 @@ const mailsToSend = [
     {
         "id": 232,
         "created_at": "2024-12-13T14:19:52.698458+00:00",
-        "firstName": "Eugen ",
-        "lastName": "Korbmacher ",
+        "firstName": "Eugen",
+        "lastName": "Korbmacher",
         "email": "eugen.marketing8@gmail.com",
         "persons": 5,
         "questions": "",
@@ -1161,7 +1176,7 @@ const mailsToSend = [
     {
         "id": 234,
         "created_at": "2024-12-13T16:25:08.481434+00:00",
-        "firstName": "Sophia ",
+        "firstName": "Sophia",
         "lastName": "Peno",
         "email": "sophiafast29@gmail.com",
         "persons": 2,
@@ -1171,8 +1186,8 @@ const mailsToSend = [
     {
         "id": 235,
         "created_at": "2024-12-13T16:56:58.822196+00:00",
-        "firstName": "anita & julia ",
-        "lastName": "siebert ",
+        "firstName": "anita & julia",
+        "lastName": "siebert",
         "email": "anitasiebert63@gmail.com",
         "persons": 2,
         "questions": "",
@@ -1211,7 +1226,7 @@ const mailsToSend = [
     {
         "id": 240,
         "created_at": "2024-12-13T21:52:05.622645+00:00",
-        "firstName": "Nelli ",
+        "firstName": "Nelli",
         "lastName": "Dalinger",
         "email": "Dalingernelli@gmail.com",
         "persons": 4,
@@ -1221,7 +1236,7 @@ const mailsToSend = [
     {
         "id": 241,
         "created_at": "2024-12-13T22:48:29.687856+00:00",
-        "firstName": "daniel ",
+        "firstName": "daniel",
         "lastName": "neumamn",
         "email": "daniel.ne1402@gmail.com",
         "persons": 1,
@@ -1231,7 +1246,7 @@ const mailsToSend = [
     {
         "id": 242,
         "created_at": "2024-12-13T23:05:35.401398+00:00",
-        "firstName": "Waldemar ",
+        "firstName": "Waldemar",
         "lastName": "Becker",
         "email": "waldemar_becker@yahoo.de",
         "persons": 2,
@@ -1261,7 +1276,7 @@ const mailsToSend = [
     {
         "id": 245,
         "created_at": "2024-12-14T10:27:32.178889+00:00",
-        "firstName": "Andreas ",
+        "firstName": "Andreas",
         "lastName": "Schmidt",
         "email": "andischmidt24071992@gmail.com",
         "persons": 2,
@@ -1291,7 +1306,7 @@ const mailsToSend = [
     {
         "id": 248,
         "created_at": "2024-12-14T10:38:50.558213+00:00",
-        "firstName": "Robert ",
+        "firstName": "Robert",
         "lastName": "Roth",
         "email": "alinaroth11@gmail.com",
         "persons": 6,
@@ -1302,7 +1317,7 @@ const mailsToSend = [
         "id": 249,
         "created_at": "2024-12-14T10:43:45.719614+00:00",
         "firstName": "Dina",
-        "lastName": "Kronwald ",
+        "lastName": "Kronwald",
         "email": "kron83@hotmail.de",
         "persons": 3,
         "questions": "",
@@ -1332,7 +1347,7 @@ const mailsToSend = [
         "id": 252,
         "created_at": "2024-12-14T11:55:02.414085+00:00",
         "firstName": "andy",
-        "lastName": "neufeld ",
+        "lastName": "neufeld",
         "email": "andynufeld7@gmail.com",
         "persons": 8,
         "questions": "",
@@ -1361,8 +1376,8 @@ const mailsToSend = [
     {
         "id": 255,
         "created_at": "2024-12-14T14:00:13.763321+00:00",
-        "firstName": "Noël ",
-        "lastName": "Dittrich ",
+        "firstName": "Noël",
+        "lastName": "Dittrich",
         "email": "dittrichnoel8@gmail.com",
         "persons": 2,
         "questions": "",
@@ -1372,7 +1387,7 @@ const mailsToSend = [
         "id": 256,
         "created_at": "2024-12-14T14:02:01.8861+00:00",
         "firstName": "Edward",
-        "lastName": "Berg ",
+        "lastName": "Berg",
         "email": "bergh7919@gmail.com",
         "persons": 1,
         "questions": "",
@@ -1381,8 +1396,8 @@ const mailsToSend = [
     {
         "id": 257,
         "created_at": "2024-12-14T14:29:52.00549+00:00",
-        "firstName": "Marc ",
-        "lastName": "Becker ",
+        "firstName": "Marc",
+        "lastName": "Becker",
         "email": "hugob7515@gmail.com",
         "persons": 1,
         "questions": "",
@@ -1391,8 +1406,8 @@ const mailsToSend = [
     {
         "id": 258,
         "created_at": "2024-12-14T14:30:51.304935+00:00",
-        "firstName": "Marina ",
-        "lastName": "Steinbrenner ",
+        "firstName": "Marina",
+        "lastName": "Steinbrenner",
         "email": "maristeini@gmx.net",
         "persons": 2,
         "questions": "",
@@ -1401,7 +1416,7 @@ const mailsToSend = [
     {
         "id": 259,
         "created_at": "2024-12-14T14:59:41.019513+00:00",
-        "firstName": "Matthias ",
+        "firstName": "Matthias",
         "lastName": "Klimm",
         "email": "m_klimm@web.de",
         "persons": 2,
@@ -1411,7 +1426,7 @@ const mailsToSend = [
     {
         "id": 260,
         "created_at": "2024-12-14T15:34:54.865058+00:00",
-        "firstName": "Judith ",
+        "firstName": "Judith",
         "lastName": "Klimm",
         "email": "judith.klimm@gmail.com",
         "persons": 2,
