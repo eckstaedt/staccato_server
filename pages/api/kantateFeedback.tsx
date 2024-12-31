@@ -141,9 +141,6 @@ const old = [
         "questions": "",
         "active": true
     },
-];
-
-const first = [
     {
         "id": 122,
         "created_at": "2024-11-29T09:48:46.444083+00:00",
@@ -226,7 +223,7 @@ const first = [
     },
 ];
 
-const second = [
+const first = [
     {
         "id": 134,
         "created_at": "2024-12-02T16:19:21.668283+00:00",
@@ -267,9 +264,6 @@ const second = [
         "questions": "",
         "active": true
     },
-];
-
-const mailsToSend = [
     {
         "id": 138,
         "created_at": "2024-12-04T06:29:38.179056+00:00",
@@ -277,16 +271,6 @@ const mailsToSend = [
         "lastName": "Kunz",
         "email": "kunzjasi@gmail.com",
         "persons": 1,
-        "questions": "",
-        "active": true
-    },
-    {
-        "id": 139,
-        "created_at": "2024-12-04T07:29:41.381773+00:00",
-        "firstName": "Emilia",
-        "lastName": "Weber",
-        "email": "emiliaweber17@gmx.de",
-        "persons": 2,
         "questions": "",
         "active": true
     },
@@ -320,6 +304,9 @@ const mailsToSend = [
         "questions": "",
         "active": true
     },
+];
+
+const mailsToSend = [
     {
         "id": 143,
         "created_at": "2024-12-04T21:31:37.975763+00:00",
