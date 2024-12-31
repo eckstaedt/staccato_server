@@ -221,9 +221,6 @@ const old = [
         "questions": "",
         "active": true
     },
-];
-
-const first = [
     {
         "id": 134,
         "created_at": "2024-12-02T16:19:21.668283+00:00",
@@ -306,7 +303,7 @@ const first = [
     },
 ];
 
-const mailsToSend = [
+const first = [
     {
         "id": 143,
         "created_at": "2024-12-04T21:31:37.975763+00:00",
@@ -338,20 +335,10 @@ const mailsToSend = [
         "active": true
     },
     {
-        "id": 146,
-        "created_at": "2024-12-05T13:52:08.946362+00:00",
-        "firstName": "Sophie",
-        "lastName": "Gesswein",
-        "email": "GessSoph20@esgsp.de",
-        "persons": 2,
-        "questions": "",
-        "active": true
-    },
-    {
         "id": 147,
         "created_at": "2024-12-05T17:49:59.358549+00:00",
         "firstName": "Miriam",
-        "lastName": "Moder",
+        "lastName": "Moser",
         "email": "mimomomi33@gmail.com",
         "persons": 4,
         "questions": "",
@@ -397,6 +384,9 @@ const mailsToSend = [
         "questions": "",
         "active": true
     },
+];
+
+const mailsToSend = [
     {
         "id": 152,
         "created_at": "2024-12-05T22:45:02.736942+00:00",
