@@ -24,12 +24,6 @@ const handler = async (req: any, res: any) => {
 
     const telegraf = new Telegraf(process.env.VOS_BOT as string);
 
-    await telegraf.telegram.sendMessage(
-        63117481,
-        `*KJT*\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.church}\nEmail: ${record.email}\nTyp: ${record.type}\nFragen: ${record.questions ?? "keine"}`,
-        { parse_mode: 'Markdown' },
-    );
-
     const workshops: any = {
         kids: [
             {
@@ -90,6 +84,12 @@ const handler = async (req: any, res: any) => {
     };
 
     const mailSent: boolean = await sendMail(mailOptions);
+
+    await telegraf.telegram.sendMessage(
+        63117481,
+        `*KJT*\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.church}\nEmail: ${record.email}\nTyp: ${record.type}\nFragen: ${record.questions ?? "keine"}`,
+        { parse_mode: 'Markdown' },
+    );
 
     res.status(200).end(JSON.stringify({ mailSent }));
 }
