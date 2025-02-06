@@ -73,8 +73,8 @@ const handler = async (req: any, res: any) => {
         ],
     };
 
-    const ws1 = workshops[record.type].find((ws: any) => ws.id === record.workshops[0]);
-    const ws2 = workshops[record.type].find((ws: any) => ws.id === record.workshops[1]);
+    const ws1 = workshops[record.type].find((ws: any) => ws.id === record.workshops[0])?.name ?? "Nicht bekannt";
+    const ws2 = workshops[record.type].find((ws: any) => ws.id === record.workshops[1])?.name ?? "Nicht bekannt";
 
     const props: Props = {
         name: record.firstName,
