@@ -87,8 +87,8 @@ const handler = async (req: any, res: any) => {
 
     await telegraf.telegram.sendMessage(
         63117481,
-        `*KJT*\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.church}\nEmail: ${record.email}\nTyp: ${record.type}\nFragen: ${record.questions ?? "keine"}`,
-        { parse_mode: 'Markdown' },
+        `KJT\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.church}\nEmail: ${record.email}\nTyp: ${record.type}\nFragen: ${record.questions ?? "keine"}`,
+        { parse_mode: undefined },
     );
 
     res.status(200).end(JSON.stringify({ mailSent }));
