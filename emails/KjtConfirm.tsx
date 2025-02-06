@@ -48,7 +48,7 @@ export default function KjtConfirm(props: Props) {
                     vielen Dank für die Anmeldung. Diese ist hiermit bestätigt.
                   <br></br>
                   <br></br>
-                    <b>Workshops</b>
+                    <b>Ausgewählte Workshops</b>
                   <br></br>
                     - {ws1}
                   <br></br>
