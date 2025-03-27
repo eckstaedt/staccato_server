@@ -7,82 +7,87 @@ import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
 export interface Props {
-    name: string;
-    ws1: string;
-    ws2: string;
+  name: string;
+  ws1: string;
+  ws2: string;
 }
 
 export default function KjtConfirm(props: Props) {
-    const { name, ws1, ws2 } = props;
+  const { name, ws1, ws2 } = props;
 
-    return (
-        <Html lang='de'>
-        <Head />
-        <Section style={main}>
-          <Container style={container}>
-            <Container style={{ ...paragraph, ...logo}}>
-              <Img style={logoImg} src="https://rdibuhxtxlvopgufcpzt.supabase.co/storage/v1/object/sign/main-bucket/logo_black.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJtYWluLWJ1Y2tldC9sb2dvX2JsYWNrLnBuZyIsImlhdCI6MTczMjI3NTkxNSwiZXhwIjo0ODU0MzM5OTE1fQ.yLpKcq-PNr7gL0_jC2zUZQ_1ISqMu2siVINy_t7yJg8&t=2024-11-22T11%3A45%3A15.640Z" />
-              <Text>FECG Speyer/Schwegenheim</Text>
-            </Container>
+  return (
+    <Html lang='de'>
+      <Head />
+      <Section style={main}>
+        <Container style={container}>
+          <Container style={{ ...paragraph, ...logo }}>
+            <Img style={logoImg} src="https://rdibuhxtxlvopgufcpzt.supabase.co/storage/v1/object/sign/main-bucket/logo_black.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJtYWluLWJ1Y2tldC9sb2dvX2JsYWNrLnBuZyIsImlhdCI6MTczMjI3NTkxNSwiZXhwIjo0ODU0MzM5OTE1fQ.yLpKcq-PNr7gL0_jC2zUZQ_1ISqMu2siVINy_t7yJg8&t=2024-11-22T11%3A45%3A15.640Z" />
+            <Text>FECG Speyer/Schwegenheim</Text>
+          </Container>
 
-            <Container style={content}>
+          <Container style={content}>
 
-              <Container style={boxInfos}>
-                <Container>
-                  <Text
-                    style={{
-                      ...paragraph,
-                      fontSize: 20,
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    Grüß dich {name},
-                  </Text>
-                  <Text
-                    style={{
-                      ...paragraph,
-                      fontSize: 16,
-                      fontWeight: 'normal',
-                    }}
-                  >
-                    vielen Dank für die Anmeldung. Diese ist hiermit bestätigt.
+            <Container style={boxInfos}>
+              <Container>
+                <Text
+                  style={{
+                    ...paragraph,
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Grüß dich {name},
+                </Text>
+                <Text
+                  style={{
+                    ...paragraph,
+                    fontSize: 16,
+                    fontWeight: 'normal',
+                  }}
+                >
+                  vielen Dank für die Anmeldung. Diese ist hiermit bestätigt.
+                  {
+                    ws1 !== "" && ws2 !== "" &&
+                    <>
+                      <br></br>
+                      <br></br>
+                      <b>Ausgewählte Workshops</b>
+                      <br></br>
+                      - {ws1}
+                      <br></br>
+                      - {ws2}
+                    </>
+                  }
                   <br></br>
                   <br></br>
-                    <b>Ausgewählte Workshops</b>
+                  Mit Gottes Segen,
                   <br></br>
-                    - {ws1}
-                  <br></br>
-                    - {ws2}
-                  <br></br>
-                  <br></br>
-                    Mit Gottes Segen,
-                  <br></br>
-                    FECG Speyer/Schwegenheim
-                  </Text>
-                </Container>
+                  FECG Speyer/Schwegenheim
+                </Text>
               </Container>
             </Container>
-
-            <Text
-              style={{
-                ...paragraph,
-                textAlign: 'center',
-                fontSize: 12,
-                color: 'rgb(0,0,0, 0.7)',
-              }}
-            >
-              © 2024 | <a style={{ textDecoration: "none", color: "rgb(0,0,0, 0.7)", fontSize: "12px" }} href='https://www.fecg-speyer.de'>www.fecg-speyer.de</a>
-            </Text>
           </Container>
-        </Section>
-      </Html>
-    );
+
+          <Text
+            style={{
+              ...paragraph,
+              textAlign: 'center',
+              fontSize: 12,
+              color: 'rgb(0,0,0, 0.7)',
+            }}
+          >
+            © 2024 | <a style={{ textDecoration: "none", color: "rgb(0,0,0, 0.7)", fontSize: "12px" }} href='https://www.fecg-speyer.de'>www.fecg-speyer.de</a>
+          </Text>
+        </Container>
+      </Section>
+    </Html>
+  );
 }
 
 const logoImg = {
-    height: "60px",
-    width: "60px",
-    paddingRight: "10px",
+  height: "60px",
+  width: "60px",
+  paddingRight: "10px",
 };
 
 const fontFamily =
@@ -136,6 +141,6 @@ const boxInfos = {
 };
 
 const headerImgStyle: any = {
-    height: "300px",
-    objectFit: "cover",
+  height: "300px",
+  objectFit: "cover",
 };
