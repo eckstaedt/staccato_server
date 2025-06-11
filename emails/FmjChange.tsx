@@ -20,7 +20,7 @@ export default function FmjChange(props: Props) {
         <Section style={main}>
           <Container style={container}>
             <Container style={{ ...paragraph, ...logo}}>
-              <Img style={logoImg} src="https://wqmqbzzmicifozbuugji.supabase.co/storage/v1/object/public/general/android-chrome-512x512.png" />
+              <Img style={logoImg} src="https://rdibuhxtxlvopgufcpzt.supabase.co/storage/v1/object/sign/main-bucket/fmj.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84YTQyYmU2Yy0yNmRjLTQ0MDMtYjRiMy1hYjM0Nzc1ODhmZTUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWluLWJ1Y2tldC9mbWoucG5nIiwiaWF0IjoxNzQ5NjUwNzMxLCJleHAiOjQ4NzE3MTQ3MzF9.MvZcZNQOjIZBVnGXYc0ByIy9J8zwrF5GqeGSy3FBaQU" />
               <Text>Ferien mit Jesus</Text>
             </Container>
 
