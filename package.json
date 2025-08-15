@@ -29,6 +29,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.6",
+    "formidable": "^3.5.4",
     "googleapis": "^109.0.0",
     "http2": "^3.3.7",
     "lucide-react": "^0.439.0",
@@ -45,6 +46,7 @@
     "telegraf": "^4.11.2"
   },
   "devDependencies": {
+    "@types/formidable": "^3.4.5",
     "@types/node": "18.11.8",
     "@types/nodemailer": "^6.4.6",
     "@types/papaparse": "^5.3.14",
