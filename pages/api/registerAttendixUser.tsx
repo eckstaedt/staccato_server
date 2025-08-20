@@ -43,7 +43,7 @@ const handler = async (req: any, res: any) => {
         name,
         url: "https://attendix.de",
         appName: "Attendix",
-        imageUrl: "https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/login.jpeg" // TODO: Change to correct image depending on type
+        imageUrl: "https://ultyjzgwejpehfjuyenr.supabase.co/storage/v1/object/public/profiles/login.jpeg"
     };
     const emailHtml = render(<AttRegister {...props} />);
     const mailOptions: any = {

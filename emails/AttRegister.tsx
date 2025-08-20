@@ -27,7 +27,7 @@ export default function AttRegister(props: Props) {
         <Section style={main}>
           <Container style={container}>
             <Container style={{ ...paragraph, ...logo}}>
-              <Img style={logoImg} src="https://dwexedvloevhzoanxefp.supabase.co/storage/v1/object/public/public/1024.png" />
+              <Img style={logoImg} src="https://ultyjzgwejpehfjuyenr.supabase.co/storage/v1/object/public/profiles/favicon.png" />
               <Text>{ appName } Anwesenheit</Text>
             </Container>
 
