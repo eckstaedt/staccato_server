@@ -26,8 +26,10 @@ const handler = async (req: any, res: any) => {
 
     supabase = createClient(process.env.SUPABASE_ATTENDIX_URL as string, process.env.SUPABASE_ATTENDIX_KEY as string);
 
-    const { data, error } = await supabase.auth.signUp({
-        email, password
+    const { data, error } = await supabase.auth.admin.createUser({
+        email,
+        password,
+        email_confirm: true,
     });
 
     if (error) {
