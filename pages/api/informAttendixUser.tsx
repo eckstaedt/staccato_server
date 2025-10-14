@@ -25,7 +25,7 @@ const handler = async (req: any, res: any) => {
         name,
         url: "https://attendix.de",
         appName: "Attendix",
-        imageUrl: "https://ultyjzgwejpehfjuyenr.supabase.co/storage/v1/object/public/profiles/login.jpeg",
+        imageUrl: "https://ultyjzgwejpehfjuyenr.supabase.co/storage/v1/object/public/profiles/bg.jpeg",
         tenant,
         role
     };
