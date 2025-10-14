@@ -9,26 +9,26 @@ import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
 export interface Props {
-    email: string;
-    password: string;
     name: string;
     appName: string;
     url: string;
     imageUrl: string;
+    tenant: string;
+    role: string;
 }
 
-export default function AttRegister(props: Props) {
-    const { email, password, name, appName, url, imageUrl } = props;
+export default function AttInform(props: Props) {
+    const { name, appName, url, imageUrl, tenant, role } = props;
 
     return (
         <Html lang='de'>
         <Head />
-        <Preview>Deine Zugangsdaten für die Anwesenheits App</Preview>
+        <Preview>Du wurdest zu einer Attendix-Instanz hinzugefügt</Preview>
         <Section style={main}>
           <Container style={container}>
             <Container style={{ ...paragraph, ...logo}}>
               <Img style={logoImg} src="https://ultyjzgwejpehfjuyenr.supabase.co/storage/v1/object/public/profiles/favicon.png" />
-              <Text>{ appName } Anwesenheit</Text>
+              <Text>{ appName }</Text>
             </Container>
 
             <Container style={content}>
@@ -54,15 +54,15 @@ export default function AttRegister(props: Props) {
                       textAlign: 'center',
                     }}
                   >
-                    Anbei erhälst du deine Login Daten für die {appName} App.
+                    Du wurdest zu einer Attendix-Instanz hinzugefügt. Du kannst die Instanz einfach im Tab "Mehr" wechseln.
                   </Text>
                 </Container>
 
                 <Text style={paragraph}>
-                  E-Mail: {email}
+                  Instanz: {tenant}
                 </Text>
                 <Text style={{ ...paragraph, marginTop: -5 }}>
-                  Passwort: {password}
+                  Rolle: {role}
                 </Text>
                 <Section style={containerButton}>
                   <Button href={url} style={button}>Zur App</Button>
