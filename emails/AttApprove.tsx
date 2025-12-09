@@ -17,13 +17,13 @@ export interface Props {
     role: string;
 }
 
-export default function AttInform(props: Props) {
+export default function AttApprove(props: Props) {
     const { name, appName, url, imageUrl, tenant, role } = props;
 
     return (
         <Html lang='de'>
         <Head />
-        <Preview>Du wurdest zu einer Attendix-Instanz hinzugefügt</Preview>
+        <Preview>Deine Registrierung bei der Attendix Instanz wurde genehmigt</Preview>
         <Section style={main}>
           <Container style={container}>
             <Container style={{ ...paragraph, ...logo}}>
@@ -54,7 +54,7 @@ export default function AttInform(props: Props) {
                       textAlign: 'center',
                     }}
                   >
-                    Du wurdest zu einer Attendix-Instanz hinzugefügt. Du kannst die Instanz einfach im Tab "Mehr" wechseln.
+                  Deine Registrierung wurde genehmigt! Logge dich jetzt ein, um Zugriff zur Instanz zu erhalten.
                   </Text>
                 </Container>
 
