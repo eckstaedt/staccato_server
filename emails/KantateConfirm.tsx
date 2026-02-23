@@ -73,7 +73,7 @@ export default function KantateConfirm(props: Props) {
                 color: 'rgb(0,0,0, 0.7)',
               }}
             >
-              © 2024 | <a style={{ textDecoration: "none", color: "rgb(0,0,0, 0.7)", fontSize: "12px" }} href='https://www.fecg-speyer.de'>www.fecg-speyer.de</a>
+              © {new Date().getFullYear()} | <a style={{ textDecoration: "none", color: "rgb(0,0,0, 0.7)", fontSize: "12px" }} href='https://www.fecg-speyer.de'>www.fecg-speyer.de</a>
             </Text>
           </Container>
         </Section>
