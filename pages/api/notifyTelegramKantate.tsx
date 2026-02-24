@@ -27,18 +27,13 @@ const handler = async (req: any, res: any) => {
 
     await telegraf.telegram.sendMessage(
         63117481,
-        `*Kantate*\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.persons}\nEmail: ${record.email}${record.questions ? '\nFrage: ' + record.questions : ''}`,
-        { parse_mode: 'Markdown' }
-    );
-    await telegraf.telegram.sendMessage(
-        590859681,
-        `*Kantate*\nName: ${record.firstName} ${record.lastName}\nAnzahl: ${record.persons}\nEmail: ${record.email}${record.questions ? '\nFrage: ' + record.questions : ''}`,
+        `*Kantate*\nName: ${record.firstName} ${record.lastName}\nAnzahl Erwachsene: ${record.persons}\nAnzahl Kinder: ${record.persons}\nEmail: ${record.email}${record.questions ? '\nFrage: ' + record.questions : ''}`,
         { parse_mode: 'Markdown' }
     );
 
     const props: Props = {
         name: record.firstName + " " + record.lastName,
-        seats: record.persons,
+        seats: record.persons + record.children,
     };
     const emailHtml = render(<KantateConfirm {...props} />);
     const mailOptions: any = {
